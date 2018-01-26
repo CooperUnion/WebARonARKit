@@ -53,6 +53,8 @@ NSString *deviceName() {
 #define URL_TEXTFIELD_HEIGHT 0
 #define PROGRESSVIEW_HEIGHT 2
 
+#define URL_DEFAULT_SITE "https://cooper-union-ar-demo.glitch.me"
+
 @interface ViewController ()<MTKViewDelegate, ARSessionDelegate>
 
 @property(nonatomic, strong) ARSession *session;
@@ -355,8 +357,7 @@ NSString *deviceName() {
                    context:NULL];
 
     // Load the default website.
-    NSString *defaultSite =
-    @"https://cooper-union-ar-demo.glitch.me";
+    NSString *defaultSite = @URL_DEFAULT_SITE;
     NSURL *url = [NSURL URLWithString:defaultSite];
     [wkWebView loadRequest:[NSURLRequest requestWithURL:url]];
     [urlTextField setText:url.absoluteString];
