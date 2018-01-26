@@ -356,7 +356,7 @@ NSString *deviceName() {
 
     // Load the default website.
     NSString *defaultSite =
-    @"https://developers.google.com/ar/develop/web/getting-started#examples";
+    @"https://cooper-union-ar-demo.glitch.me";
     NSURL *url = [NSURL URLWithString:defaultSite];
     [wkWebView loadRequest:[NSURLRequest requestWithURL:url]];
     [urlTextField setText:url.absoluteString];
