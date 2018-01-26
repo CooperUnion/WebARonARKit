@@ -47,10 +47,10 @@ NSString *deviceName() {
 #define URL_BUTTON_WIDTH_LANDSCAPE 44
 #define URL_BUTTON_HEIGHT_LANDSCAPE 44
 
-#define URL_TEXTFIELD_HEIGHT_EXPANDED 44
-#define URL_TEXTFIELD_HEIGHT_MINIFIED 14
+#define URL_TEXTFIELD_HEIGHT_EXPANDED 0
+#define URL_TEXTFIELD_HEIGHT_MINIFIED 0
 
-#define URL_TEXTFIELD_HEIGHT 44
+#define URL_TEXTFIELD_HEIGHT 0
 #define PROGRESSVIEW_HEIGHT 2
 
 @interface ViewController ()<MTKViewDelegate, ARSessionDelegate>
@@ -356,7 +356,8 @@ NSString *deviceName() {
 
     // Load the default website.
     NSString *defaultSite =
-    @"https://developers.google.com/ar/develop/web/getting-started#examples";
+    @"https://cooper-union-ar-demo.glitch.me";
+    /* @"https://developers.google.com/ar/develop/web/getting-started#examples"; */
     NSURL *url = [NSURL URLWithString:defaultSite];
     [wkWebView loadRequest:[NSURLRequest requestWithURL:url]];
     [urlTextField setText:url.absoluteString];
