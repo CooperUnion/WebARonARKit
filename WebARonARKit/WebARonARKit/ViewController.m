@@ -218,6 +218,13 @@ NSString *deviceName() {
     [wkWebView reload];
 }
 
+- (void)homeButtonClicked:(UIButton *)button {
+//    [wkWebView reload];
+    NSString *defaultSite = @URL_DEFAULT_SITE;
+    NSURL *url = [NSURL URLWithString:defaultSite];
+    [wkWebView loadRequest:[NSURLRequest requestWithURL:url]];
+}
+
 - (void)setShowCameraFeed:(bool)show {
     if (show) {
         wkWebView.opaque = false;
@@ -415,6 +422,7 @@ NSString *deviceName() {
 - (void)initButtons {
     [self initBackButton];
     [self initRefreshButton];
+    [self initHomeButton];
 }
 
 - (void)initBackButton {
@@ -437,6 +445,19 @@ NSString *deviceName() {
                       action:@selector(refreshButtonClicked:)
             forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:refreshButton];
+}
+
+- (void)initHomeButton {
+    homeButton = [[UIButton alloc] init];
+    
+    //[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0];
+    [homeButton setBackgroundColor:[UIColor clearColor]];
+    UIImage *homeIcon = [UIImage imageNamed:@"HomeIcon"];
+    [homeButton setImage:homeIcon forState:UIControlStateNormal];
+    [homeButton addTarget:self
+                      action:@selector(homeButtonClicked:)
+            forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:homeButton];
 }
 
 - (void)dealloc {
@@ -554,6 +575,7 @@ NSString *deviceName() {
                                                URL_BUTTON_PADDING,
                                                0, URL_BUTTON_WIDTH_PORTRAIT,
                                                URL_BUTTON_HEIGHT_PORTRAIT)];
+
             int contentOffset = NOTCH_HEIGHT + URL_SAFE_AREA_VERTICAL * 2 +
             URL_TEXTFIELD_HEIGHT_MINIFIED;
             CGRect contentRect = CGRectMake(0, contentOffset, self.view.frame.size.width,
@@ -644,7 +666,15 @@ NSString *deviceName() {
          setFrame:CGRectMake(
                              self.view.frame.size.width - URL_BUTTON_WIDTH_LANDSCAPE, 0,
                              URL_BUTTON_WIDTH_LANDSCAPE, URL_BUTTON_HEIGHT_LANDSCAPE)];
+        
+        [homeButton
+         setFrame:CGRectMake(
+                             self.view.frame.size.width - (URL_BUTTON_WIDTH_LANDSCAPE * 2), 0,
+                             URL_BUTTON_WIDTH_LANDSCAPE, URL_BUTTON_HEIGHT_LANDSCAPE)];
+        NSString *width = [NSString stringWithFormat:@"%f", self.view.frame.size.width];
 
+        //NSLog example
+        NSLog(@"%@", width);
 
         int contentOffset = URL_TEXTFIELD_HEIGHT_EXPANDED;
         CGRect contentRect = CGRectMake(0, contentOffset, self.view.frame.size.width,

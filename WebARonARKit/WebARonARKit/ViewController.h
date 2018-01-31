@@ -34,6 +34,7 @@
     bool urlTextFieldActive;
     UIButton *backButton;
     UIButton *refreshButton;
+    UIButton *homeButton;
 
     bool initialPageLoadedWhenTrackingBegins;
 
